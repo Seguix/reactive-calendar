@@ -1,0 +1,30 @@
+<p>
+  <mat-toolbar color="primary" fxLayout="column">
+    <mat-toolbar-row>
+      <span>Reactive calendar</span>
+    </mat-toolbar-row>
+    <mat-toolbar-row fxLayoutAlign="space-around center" [style.marginBottom.em]="1">
+      <div fxLayoutGap="15px">
+        <button mat-fab (click)="previous.emit()" color="primary">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <button mat-fab (click)="next.emit()" color="primary">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+
+      <div>
+        <button mat-button (click)="setViewMode.emit(VIEW_MODE.DAY)">Day</button>
+        <button mat-button (click)="setViewMode.emit(VIEW_MODE.WEEK)">Week</button>
+        <button mat-button (click)="setViewMode.emit(VIEW_MODE.MONTH)">Month</button>
+      </div>
+
+      <div>
+        <mat-form-field flex>
+          <input matInput (keyup)="searchChanged.emit($event.target.value)"/>
+          <mat-icon class="material-icons">&#xE8B6;</mat-icon>
+        </mat-form-field>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</p>

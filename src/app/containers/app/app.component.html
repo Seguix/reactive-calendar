@@ -1,0 +1,37 @@
+<topbar
+  (next)="onNext()"
+  (previous)="onPrevious()"
+  (setViewMode)="onSetViewMode($event)"
+  (searchChanged)="onSearchChanged($event)">
+</topbar>
+<div [ngSwitch]="viewMode$|async">
+  <day-view
+    *ngSwitchCase="VIEW_MODE.DAY"
+    [appointments]="filteredAppointments$|async"
+    [date]="currentDate$|async"
+    (removeAppointment)="onRemoveAppointment($event)"
+    (addAppointment)="onAddAppointment($event)"
+    (updateAppointment)="onUpdateAppointment($event)"
+  >
+  </day-view>
+  <week-view 
+    *ngSwitchCase="VIEW_MODE.WEEK"
+    [appointments]="filteredAppointments$|async"
+    [year]="currentYear$|async"
+    [week]="currentWeek$|async"
+    (removeAppointment)="onRemoveAppointment($event)"
+    (addAppointment)="onAddAppointment($event)"
+    (updateAppointment)="onUpdateAppointment($event)"
+  >
+  </week-view>
+  <month-view
+    *ngSwitchCase="VIEW_MODE.MONTH"
+    [month]="currentMonth$|async"
+    [year]="currentYear$|async"
+    [appointments]="filteredAppointments$|async"
+    (removeAppointment)="onRemoveAppointment($event)"
+    (addAppointment)="onAddAppointment($event)"
+    (updateAppointment)="onUpdateAppointment($event)"
+  >
+  </month-view>
+</div>
